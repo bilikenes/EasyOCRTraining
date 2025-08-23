@@ -43,49 +43,69 @@ transform = transforms.Compose([
 ])
 
 csv_files = [
-    r"D:\Medias\plates\detected_plates_07_01\labels.csv",
-    r"D:\Medias\plates\detected_plates_07_02\labels.csv",
-    r"D:\Medias\plates\detected_plates_07_03\labels.csv",
-    r"D:\Medias\plates\detected_plates_07_04\labels.csv",
-    r"D:\Medias\plates\detected_plates_07_05\labels.csv",
-    r"D:\Medias\plates\detected_plates_07_06\labels.csv",
-    r"D:\Medias\plates\detected_plates_07_07\labels.csv",
-    r"D:\Medias\plates\detected_plates_07_08\labels.csv",
-    r"D:\Medias\plates\detected_plates_07_09\labels.csv",
-    r"D:\Medias\plates\detected_plates_07_10\labels.csv",
-    r"D:\Medias\plates\detected_plates_07_11\labels.csv",
-    r"D:\Medias\plates\detected_plates_07_12\labels.csv",
-    r"D:\Medias\plates\detected_plates_07_13\labels.csv",
-    r"D:\Medias\plates\detected_plates_07_14\labels.csv",
-    r"D:\Medias\plates\detected_plates_07_15\labels.csv",
-    r"D:\Medias\plates\detected_plates_07_16\labels.csv",
-    r"D:\Medias\plates\detected_plates_07_17\labels.csv",
-    r"D:\Medias\plates\detected_plates_07_18\labels.csv",
-    r"D:\Medias\plates\detected_plates_07_19\labels.csv",
-    r"D:\Medias\plates\detected_plates_07_20\labels.csv"
+    r"D:\Medias\plates\detected_plates\detected_plates_07_01\labels.csv",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_02\labels.csv",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_03\labels.csv",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_04\labels.csv",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_05\labels.csv",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_06\labels.csv",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_07\labels.csv",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_08\labels.csv",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_09\labels.csv",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_10\labels.csv",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_11\labels.csv",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_12\labels.csv",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_13\labels.csv",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_14\labels.csv",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_15\labels.csv",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_16\labels.csv",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_17\labels.csv",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_18\labels.csv",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_19\labels.csv",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_20\labels.csv",
+    r"D:\Medias\plates\square_plates\square_plates_03_01\labels.csv",
+    r"D:\Medias\plates\square_plates\square_plates_03_02\labels.csv",
+    r"D:\Medias\plates\square_plates\square_plates_03_03\labels.csv",
+    r"D:\Medias\plates\square_plates\square_plates_03_04\labels.csv",
+    r"D:\Medias\plates\square_plates\square_plates_03_05\labels.csv",
+    r"D:\Medias\plates\square_plates\square_plates_03_06\labels.csv",
+    r"D:\Medias\plates\square_plates\square_plates_03_07\labels.csv",
+    r"D:\Medias\plates\square_plates\square_plates_03_08\labels.csv",
+    r"D:\Medias\plates\square_plates\square_plates_03_09\labels.csv",
+    r"D:\Medias\plates\square_plates\square_plates_03_10\labels.csv"
 ]
 
 img_dirs = [
-    r"D:\Medias\plates\detected_plates_07_01",
-    r"D:\Medias\plates\detected_plates_07_02",
-    r"D:\Medias\plates\detected_plates_07_03",
-    r"D:\Medias\plates\detected_plates_07_04",
-    r"D:\Medias\plates\detected_plates_07_05",
-    r"D:\Medias\plates\detected_plates_07_06",
-    r"D:\Medias\plates\detected_plates_07_07",
-    r"D:\Medias\plates\detected_plates_07_08",
-    r"D:\Medias\plates\detected_plates_07_09",
-    r"D:\Medias\plates\detected_plates_07_10",
-    r"D:\Medias\plates\detected_plates_07_11",
-    r"D:\Medias\plates\detected_plates_07_12",
-    r"D:\Medias\plates\detected_plates_07_13",
-    r"D:\Medias\plates\detected_plates_07_14",
-    r"D:\Medias\plates\detected_plates_07_15",
-    r"D:\Medias\plates\detected_plates_07_16",
-    r"D:\Medias\plates\detected_plates_07_17",
-    r"D:\Medias\plates\detected_plates_07_18",
-    r"D:\Medias\plates\detected_plates_07_19",
-    r"D:\Medias\plates\detected_plates_07_20"
+    r"D:\Medias\plates\detected_plates\detected_plates_07_01",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_02",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_03",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_04",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_05",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_06",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_07",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_08",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_09",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_10",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_11",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_12",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_13",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_14",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_15",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_16",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_17",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_18",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_19",
+    r"D:\Medias\plates\detected_plates\detected_plates_07_20",
+    r"D:\Medias\plates\square_plates\square_plates_03_01",
+    r"D:\Medias\plates\square_plates\square_plates_03_02",
+    r"D:\Medias\plates\square_plates\square_plates_03_03",
+    r"D:\Medias\plates\square_plates\square_plates_03_04",
+    r"D:\Medias\plates\square_plates\square_plates_03_05",
+    r"D:\Medias\plates\square_plates\square_plates_03_06",
+    r"D:\Medias\plates\square_plates\square_plates_03_07",
+    r"D:\Medias\plates\square_plates\square_plates_03_08",
+    r"D:\Medias\plates\square_plates\square_plates_03_09",
+    r"D:\Medias\plates\square_plates\square_plates_03_10"
 ]
 
 dataset = PlateDataset(csv_files=csv_files, img_dirs=img_dirs, transform=transform)
@@ -124,7 +144,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
 
-for epoch in range(25):
+for epoch in range(10):
     model.train()
     total_loss = 0
     progress_bar = tqdm(dataloader, desc=f"Epoch {epoch+1}", unit="batch")

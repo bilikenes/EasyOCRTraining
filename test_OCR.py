@@ -108,12 +108,12 @@ idx_to_char = {idx+1: char for idx, char in enumerate(characters)}
 idx_to_char[0] = ''  # CTC blank
 
 nclass = len(characters) + 1
-model = CRNN(32, 1, nclass, 256)
-model.load_state_dict(torch.load('turkish_plate_crnn.pth', map_location='cpu'))
+model = CRNN(64, 1, nclass, 256)
+model.load_state_dict(torch.load(r'D:\EasyOcrModel\EasyOCRTraining\turkish_plate_crnn.pth', map_location='cpu'))
 model.eval()
 
 transform = transforms.Compose([
-    transforms.Resize((32, 128)),
+    transforms.Resize((64, 128)),
     transforms.ToTensor(),
     transforms.Normalize((0.5,), (0.5,))
 ])
@@ -127,7 +127,7 @@ def decode(preds):
         prev = p
     return result
 
-test_folder =  r'D:\Medias\plates\detected_plates\detected_plates_03_01' 
+test_folder =  r'D:\Medias\plates\detected_plates\detected_plates_03_08' 
 results = []
 correct = 0
 total = 0
