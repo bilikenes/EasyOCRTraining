@@ -155,7 +155,6 @@ for file_name in os.listdir(test_folder):
 accuracy = correct / total * 100
 print(f"\ntotal: {total}, true: {correct}, accuracy: {accuracy:.2f}%")
 
-
 df = pd.DataFrame(results, columns=['image', 'predicted_plate', 'true_plate', 'success'])
 df.to_csv('predictions_with_accuracy.csv', index=False)
 print("ok : predictions_with_accuracy.csv")

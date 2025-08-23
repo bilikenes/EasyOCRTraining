@@ -1,9 +1,9 @@
 import os
 import csv
 
-folder_path = r"D:\Medias\plates\detected_plates\detected_plates_03_10"
+folder_path = r"D:\Medias\plates\square_plates\05\square_plates_05_01"
 
-csv_path = r"D:\Medias\plates\detected_plates\detected_plates_03_10\labels.csv"
+csv_path = r"D:\Medias\plates\square_plates\05\square_plates_05_01\labels.csv"
 
 with open(csv_path, mode='w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
