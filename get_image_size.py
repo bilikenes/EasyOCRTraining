@@ -22,8 +22,8 @@ def get_pixels_proportion(filepath, dest_dir):
     return is_square
 
 
-path = r"D:\Medias\plates\detected_plates\01\31"
-dest = r"D:\Medias\plates\square_plates\01\square_plates_01_31"
+path = r"C:\Users\PC\Desktop\plates\detected_plates\07\31"
+dest = r"C:\Users\PC\Desktop\plates\square_plates\07\square_plates_07_31"
 
 square_plate_count = 0
 with os.scandir(path) as files:

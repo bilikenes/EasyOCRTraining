@@ -89,5 +89,5 @@ for epoch in range(150):
         total_loss += loss.item()
     print(f"Epoch {epoch+1}, Loss: {total_loss/len(dataloader)}")
 
-torch.save(model.state_dict(), 'turkish_plate_crnn.pth')
+torch.save(model.state_dict(), 'square_plate_crnn.pth')
 print("ok")

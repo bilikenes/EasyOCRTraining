@@ -1,18 +1,11 @@
 import os
 import torch
-import torch.nn as nn
-from PIL import Image, ImageOps
+from PIL import Image
 import torchvision.transforms as transforms
+import torch.nn as nn
+import pandas as pd
 
-class SquarePad:
-    def __call__(self, image):
-        w, h = image.size
-        max_wh = max(w, h)
-        hp = (max_wh - w) // 2
-        vp = (max_wh - h) // 2
-        padding = (hp, vp, max_wh - w - hp, max_wh - h - vp)
-        return ImageOps.expand(image, padding, fill=0)
-
+# Model tanımı (kare plaka CRNN aynı yapı)
 class CRNN(nn.Module):
     def __init__(self, imgH, nc, nclass, nh):
         super(CRNN, self).__init__()
@@ -36,54 +29,68 @@ class CRNN(nn.Module):
         output = self.embedding(rnn_out)
         return output
 
-characters = '0123456789ABCDEFGHIJKLMNOPRSTUVYZ#'
-idx_to_char = {idx+1: char for idx, char in enumerate(characters)}
-idx_to_char[0] = ''  # blank = boş
 
+# Karakterler ve index eşlemeleri
+characters = '0123456789ABCDEFGHIJKLMNOPRSTUVYZ'
+idx_to_char = {idx+1: char for idx, char in enumerate(characters)}
+idx_to_char[0] = ''  # CTC blank
+
+nclass = len(characters) + 1
+
+# Kare plaka modeli yükle
+model = CRNN(128, 1, nclass, 256)  # dikkat: yükseklik 128
+model.load_state_dict(torch.load('square_plate_crnn.pth', map_location='cpu'))
+model.eval()
+
+# Transform (kare plakaya göre)
 transform = transforms.Compose([
-    SquarePad(),
     transforms.Resize((128, 128)),
     transforms.ToTensor(),
     transforms.Normalize((0.5,), (0.5,))
 ])
 
-def ctc_decode(preds):
+# CTC decode
+def decode(preds):
+    prev = -1
+    result = ''
+    for p in preds:
+        if p != prev and p != 0:
+            result += idx_to_char[p.item()]
+        prev = p
+    return result
 
-    preds = preds.argmax(2)  # [T, N]
-    preds = preds.cpu().numpy()
-    results = []
-    for col in preds.T:
-        prev = -1
-        text = ""
-        for p in col:
-            if p != prev and p != 0:
-                text += idx_to_char[p]
-            prev = p
+test_folder = r'C:\Users\PC\Desktop\plates\square_plates\01\square_plates_01_30'  
+results = []
+correct = 0
+total = 0
 
-        text = text.replace("#", "\n")
-        results.append(text)
-    return results
+for file_name in os.listdir(test_folder):
+    if file_name.lower().endswith('.jpg'):
+        total += 1
+        img_path = os.path.join(test_folder, file_name)
+        img = Image.open(img_path).convert('L')
+        img = transform(img).unsqueeze(0)  # batch dimension
 
-def predict_plate(model_path, image_path):
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        with torch.no_grad():
+            outputs = model(img)
+            outputs = outputs.softmax(2)
+            preds = outputs.argmax(2).squeeze(1)
+            plate = decode(preds)
 
-    nclass = len(characters) + 1
-    model = CRNN(128, 1, nclass, 256).to(device)
-    model.load_state_dict(torch.load(model_path, map_location=device))
-    model.eval()
+        # Gerçek label -> dosya adı
+        true_plate = os.path.splitext(file_name)[0].upper()
+        success = (plate == true_plate)
+        if success:
+            correct += 1
 
-    image = Image.open(image_path).convert("L")
-    image = transform(image).unsqueeze(0).to(device)  # [1,1,H,W]
+        results.append((file_name, plate, true_plate, success))
+        print(f"{file_name} -> predict: {plate}, real: {true_plate}, result: {success}")
 
-    with torch.no_grad():
-        outputs = model(image)  # [T, 1, C]
-        decoded = ctc_decode(outputs)
+# Accuracy hesapla
+accuracy = correct / total * 100
+print(f"\ntotal: {total}, true: {correct}, accuracy: {accuracy:.2f}%")
 
-    return decoded[0]
-
-if __name__ == "__main__":
-    model_path = "turkish_plate_crnn_square_with_newline.pth"
-    test_image = r"D:\Medias\plates\square_plates\square_plates_05_01\07ADM383.jpg"
-
-    result = predict_plate(model_path, test_image)
-    print("Tahmin:", result)
+# CSV olarak kaydet
+df = pd.DataFrame(results, columns=['image', 'predicted_plate', 'true_plate', 'success'])
+df.to_csv('square_plate_predictions.csv', index=False)
+print("ok : square_plate_predictions.csv")
