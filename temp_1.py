@@ -30,7 +30,6 @@ transform = transforms.Compose([
 
 test_folder = r"C:\Users\PC\Desktop\plates\square_plates\01\square_plates_01_31"
 
-# Doğruluk için sayaçlar
 total = 0
 correct = 0
 
